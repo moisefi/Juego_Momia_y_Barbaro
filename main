@@ -1,0 +1,216 @@
+import random
+
+class Dado():
+    def __init__(self,caras):
+        self.caras = 6
+        
+    def tirar(self):
+        tirada = random.randint(1,6)
+        return tirada            
+class Personaje():
+    __nombre = ""
+    __vida = 0
+    __ataque = 0
+    __defensa = 0
+    def __init__(self,nombre,vida,ataque,defensa):
+        self.__nombre = nombre
+        self.__vida = vida
+        self.__ataque = ataque
+        self.__defensa = defensa
+                
+    @property
+    def nombre(self):
+        return self.__nombre
+    @nombre.setter
+    def nombre(self, nuevo):
+        self.__nombre = nuevo
+    @property
+    def vida(self):
+        return self.__vida
+    @vida.setter
+    def vida(self,nuevo):
+        self.__vida = nuevo
+    @property
+    def ataque(self):
+        return self.__ataque
+    @ataque.setter
+    def ataque(self, nuevo):
+        self.__ataque = nuevo
+    @property
+    def defensa(self):
+        return self.__defensa
+    @defensa.setter
+    def defensa(self, nuevo):
+        self.__defensa = nuevo
+    
+    def estar_vivo(self):
+        if self.__vida > 0 :
+            print(True)
+        else:
+            print(False)
+    def atacar(self):
+        contador_impactos = 0
+        c = 0
+        while c < self.__ataque:            
+            if dado.tirar() > 3:
+                print("impacto")
+                contador_impactos += 1
+                c += 1
+            else: 
+                print("sin impacto")
+                c += 1
+        print("Ha habido:", contador_impactos, "impactos")
+        return contador_impactos
+            
+              
+           
+    def __str__(self):
+        return """\t>Nombre:{}
+        >Vida:{} 
+        >Ataque:{} 
+        >Defensa:{}""".format(self.__nombre, self.__vida, self.__ataque, self.__defensa)
+
+class Momia(Personaje):
+    def __init__(self, nombre, vida, ataque, defensa):
+        super().__init__(nombre, vida, ataque, defensa)
+    
+    def atacar(self):
+        contador_impactos = 0
+        c = 0
+        while c < self.ataque:            
+            if dado.tirar() > 3:                
+                contador_impactos += 1
+                c += 1
+            else:                
+                c += 1
+        return contador_impactos
+    
+    def defender(self,num_impactos_barbaro):
+        c = 0
+        while c < self.defensa:            
+            if dado.tirar() == 6:
+                num_impactos_barbaro -= 1
+                c += 1
+            else: 
+                c += 1
+        if num_impactos_barbaro > 0:
+            self.vida -= num_impactos_barbaro
+            print("La momia", self.nombre, "no pudo bloquear", num_impactos_barbaro, "impactos y queda con", self.vida, "de vida")
+            
+        else:
+            print("La momia", self.nombre, "pudo bloquear totalmente el ataque y queda con", self.vida, "de vida")
+        
+        
+    
+    def __str__(self):
+        return super().__str__()
+    
+class Barbaro(Personaje):
+    def __init__(self, nombre, vida, ataque, defensa):
+        super().__init__(nombre, vida, ataque, defensa)
+    
+    def atacar(self):
+        contador_impactos = 0
+        c = 0
+        while c < self.ataque:            
+            if dado.tirar() > 3:
+                contador_impactos += 1
+                c += 1
+            else: 
+                c += 1
+        
+        return contador_impactos
+        
+    def defender(self,num_impactos_momia):
+        c = 0
+        while c < self.defensa:            
+            if dado.tirar() > 4:                
+                num_impactos_momia -= 1
+                c += 1
+            else:                
+                c += 1
+        if num_impactos_momia > 0:
+            self.vida -= num_impactos_momia
+            print("El barbaro", self.nombre, "no pudo bloquear", num_impactos_momia, "impactos y queda con", self.vida, "de vida")
+            return self.vida
+                   
+        
+        else:
+            print("El barbaro", self.nombre, "pudo bloquear totalmente el ataque y queda con", self.vida, "de vida")
+        
+    
+    def __str__(self):
+        return super().__str__()
+    
+
+dado = Dado(6)
+primera_condicion = 1
+
+while primera_condicion == 1:
+    eleccion = input("¿Que quieres ser una momia o un barbaro? ")
+    try:
+        if eleccion == "momia":
+            momia1 = Momia(input("Como quieres llamarte "), int(input("¿Cuanta vida quieres?(debe ser un número entero) ")),
+                           int(input("¿Cuanto ataque quieres?(debe ser un número entero) ")),
+                           int(input("¿Cuanta defensa quieres?(debe ser un número entero) ")))
+            print("\n",momia1)
+            print("elige a tu enemigo")
+            barbaro1 = Barbaro(input("Como quieres llamar al barbaro "),
+                               int(input("¿Cuanta vida quieres que tenga?(debe ser un número entero) ")),
+                               int(input("¿Cuanto ataque quieres que tenga?(debe ser un número entero) ")),
+                               int(input("¿Cuanta defensa quieres que tenga?(debe ser un número entero) ")))
+            print("\n",barbaro1)
+            primera_condicion = 0
+
+        elif eleccion == "barbaro":
+            barbaro1 = Barbaro(input("Como quieres llamarte "), int(input("¿Cuanta vida quieres?(debe ser un número entero) ")),
+                               int(input("¿Cuanto ataque quieres?(debe ser un número entero) ")),
+                               int(input("¿Cuanta defensa quieres?(debe ser un número entero) ")))
+            print("\n",barbaro1)
+            print("elige a tu enemigo")
+            momia1 = Momia(input("Como quieres llamar a la momia "), int(input("¿Cuanta vida quieres que tenga?(debe ser un número entero) ")),
+                           int(input("¿Cuanto ataque quieres que tenga?(debe ser un número entero) ")),
+                           int(input("¿Cuanta defensa quieres que tenga?(debe ser un número entero) ")))
+            print("\n",momia1)
+            primera_condicion = 0
+        else:
+            print("debes elegir entre momia o barbaro, escribe 'momia' o 'barbaro' exactamente y sin acentos o otros caracteres")
+    except:        
+        raise ValueError("Vuelve a iniciar el juego, has puesto una letra o un número decimal en un sitio donde debias poner un número entero")
+
+try:        
+    turnos_jugables = int(input("¿Cuántos turnos máximos quieres jugar?(debe ser un número entero) "))
+except:        
+        raise ValueError("Vuelve a iniciar el juego, has puesto una letra o un número decimal en un sitio donde debias poner un número entero")
+
+fin_juego = 0
+while fin_juego < turnos_jugables: 
+    num_impactos_momia = momia1.atacar()
+    if barbaro1.vida <= 0 or momia1.vida <= 0:
+        turnos_jugables = 0    
+    barbaro1.defender(num_impactos_momia)
+    if barbaro1.vida <= 0 or momia1.vida <= 0:
+        turnos_jugables = 0    
+    num_impactos_barbaro = barbaro1.atacar()
+    if barbaro1.vida <= 0 or momia1.vida <= 0:
+        turnos_jugables = 0
+    turnos_jugables -=1
+    momia1.defender(num_impactos_barbaro)
+    if barbaro1.vida <= 0 or momia1.vida <= 0:
+        turnos_jugables = 0
+    
+    
+
+if barbaro1.vida > momia1.vida:
+    print("GANADOR BARBARO", barbaro1.nombre)
+    print(">>> Barbaro", barbaro1.nombre, "con", barbaro1.vida, "de vida")
+    print(">>> Momia", momia1.nombre, "con", momia1.vida, "de vida")
+elif momia1.vida > barbaro1.vida:
+    print("GANADOR MOMIA", momia1.nombre)
+    print(">>> Momia", momia1.nombre, "con", momia1.vida, "de vida")
+    print(">>> Barbaro", barbaro1.nombre, "con", barbaro1.vida, "de vida")
+else:
+    print("TABLAS")
+    print(">>> Barbaro", barbaro1.nombre, "con", barbaro1.vida, "de vida")
+    print(">>> Momia", momia1.nombre, "con", momia1.vida, "de vida")
+
