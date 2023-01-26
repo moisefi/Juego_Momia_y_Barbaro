@@ -1,7 +1,7 @@
 # Juego_Momia_y_Barbaro
 Un pequeño juego creado con Python, se basa en la teoría de Python sobre las clases, condicionales y bucles. Puedes elegir ser la momia o el bárbaro, darles el ataque, vida y defensa que quieras y un dado automático se va lanzando y determina el resultado del juego. 
 
-1- Download the code or copy the code and paste it into a python ide like pycharm or VS code
+1- Download the code or copy the code and paste it into a python ide like pycharm or VS code\n
 2- Run the code
 3- Choose that you want to be a mummy or a barbarian 
 4- Put the life, attack and defense that you want to both, remember that it must be an integer
