@@ -181,7 +181,7 @@ while primera_condicion == 1:
 try:        
     turnos_jugables = int(input("¿Cuántos turnos máximos quieres jugar?(debe ser un número entero) "))
 except:        
-        raise ValueError("Vuelve a iniciar el juego, has puesto una letra o un número decimal en un sitio donde debias poner un número entero")
+    raise ValueError("Vuelve a iniciar el juego, has puesto una letra o un número decimal en un sitio donde debias poner un número entero")
 
 fin_juego = 0
 while fin_juego < turnos_jugables: 
